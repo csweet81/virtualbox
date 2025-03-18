@@ -26,26 +26,19 @@ Let's get started.
 - Step 6: Bulk Create Users with PowerShell
 - Step 7: Create a Windows 10 Client
 - Step 8: Join the Client to the Domain
-- 
 
-<h2>Windows Virtual Machine Installation Steps</h2>
+<h2>Step 1: Install VirtualBox & Required Software</h2>
 
 <img src="https://i.imgur.com/zPw9Kpj.png" height="80%" width="80%" alt="Setting up DC via Virtualbox"/>
 
-<h3> Step 1: Configure Windows Server 2019 (DC) via VirtualBox. </h3>
+<h3> 1. Download and Install VirtualBox </h3>
+- Visit the VirtualBox website and download the appropriate version for your system (Windows, macOS, or Linux).
+- Install VirtualBox.
 
-- 1.1 Click 'New'
-- Name it 'DC'
-- Choose the version 'Other version (Windows 64-Bit)'
-- Click 'Continue'
-- Scroll down to System and change Base Memory to 2048 MB
--  
+<h3> 2. Download and Install VirtualBox Extension Pack </h3>
+- After installing VirtualBox, download the Extension Pack from the same website.
+- Open VirtualBox, go to Preferences > Extensions, and install the Extension Pack.
 
-
-
-  
-</p>
-<br />
 
 <p>
 <img src="https://i.imgur.com/r6KduZ5.png" height="80%" width="80%" alt="Creating a Resource Group"/>
