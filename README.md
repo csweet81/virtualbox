@@ -5,8 +5,6 @@
 # **Step-by-Step Guide: Setting Up an Active Directory Lab Using VirtualBox**
 
 ## **Overview**
-In this guide, you will create a full Active Directory lab on your personal computer using VirtualBox. This lab will help you understand Active Directory and Windows networking. You can repeat the process multiple times to build intuition and even attempt it without instructions to test your knowledge.
-
 By the end of this guide you'll be able to: 
 
 - Manage users in Active Directory.
