@@ -16,16 +16,6 @@ Let's get started.
 
 </p>
 
-<br />
-
-<h2>Environments and Technologies Used</h2>
-- Microsoft Active Directory
-- VirtualBox
-
-<h2>Operating Systems Used </h2>
-- Windows 10 Pro, version 22H2 - x64 Gen2
-- Windows Server 2019
-
 <h2>Overview</h2>
 
 - Step 1: Install VirtualBox & Required Software
