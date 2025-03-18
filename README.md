@@ -2,7 +2,7 @@
 <img src="https://i.imgur.com/RLMgzCB.png" alt="VirtualBox logo"/>
 </p>
 
-# **Step-by-Step Guide: Setting Up an Active Directory Lab Using VirtualBox**
+# **Setting Up an Active Directory Lab Using VirtualBox**
 
 ## **Overview**
 By the end of this guide you'll be able to: 
