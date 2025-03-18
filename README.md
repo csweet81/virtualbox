@@ -1,5 +1,5 @@
 <p align="center">
-<img src="https://i.imgur.com/RLMgzCB.png" alt="VirtualBox logo"/>
+<img src="https://i.imgur.com/nB36QwJ.png" alt="VirtualBox logo"/>
 </p>
 
 # **Setting Up an Active Directory Lab Using VirtualBox**
