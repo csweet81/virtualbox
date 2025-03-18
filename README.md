@@ -2,8 +2,18 @@
 <img src="https://i.imgur.com/RLMgzCB.png" alt="VirtualBox logo"/>
 </p>
 
-<h1>Setup & Deploying Virtual Machines via VirtualBox</h1>
-In this tutorial, we will be setting up two virtual machines, one Domain Controller (DC) with Server 2019 and one with Windows 10. 
+<h1>Setting Up an Active Directory Lab Using VirtualBox</h1>
+<p>In this guide, you will create a full Active Directory lab on your personal computer using VirtualBox. This lab will help you understand Active Directory and Windows networking. You can repeat the process multiple times to build intuition and even attempt it without instructions to test your knowledge.</p>
+
+<p>By the end of this lab you'll be able to: 
+  
+- Manage users in Active Directory.
+- Use DHCP and NAT for networking.
+- Join computers to a domain.
+- Log in with domain credentials.
+
+</p>
+
 <br />
 
 <h2>Environments and Technologies Used</h2>
@@ -12,13 +22,19 @@ In this tutorial, we will be setting up two virtual machines, one Domain Control
 
 <h2>Operating Systems Used </h2>
 - Windows 10 Pro, version 22H2 - x64 Gen2
-- Windows Server 2022
+- Windows Server 2019
 
-<h2>Steps</h2>
+<h2>Overview</h2>
 
-- Step 1: Configure and deploy Domain Controller (Windows Server 2019) 
-- Step 2: Configure and deploy Client-1 (Windows 10)
--
+- Step 1: Install VirtualBox & Required Software
+- Step 2: Create a Virtual Machine for the Domain Controller
+- Step 3: Configure the Domain Controller
+- Step 4: Install Active Directory & Create a Domain
+- Step 5: Configure Additional Services
+- Step 6: Bulk Create Users with PowerShell
+- Step 7: Create a Windows 10 Client
+- Step 8: Join the Client to the Domain
+- 
 
 <h2>Windows Virtual Machine Installation Steps</h2>
 
