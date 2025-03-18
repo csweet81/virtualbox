@@ -2,128 +2,126 @@
 <img src="https://i.imgur.com/RLMgzCB.png" alt="VirtualBox logo"/>
 </p>
 
-<h1>Setting Up an Active Directory Lab Using VirtualBox</h1>
-<p>In this guide, you will create a full Active Directory lab on your personal computer using VirtualBox. This lab will help you understand Active Directory and Windows networking. You can repeat the process multiple times to build intuition and even attempt it without instructions to test your knowledge.</p>
+# **Step-by-Step Guide: Setting Up an Active Directory Lab Using VirtualBox**
 
-<p>By the end of this lab you'll be able to: 
-  
-- Manage users in Active Directory.
-- Use DHCP and NAT for networking.
-- Join computers to a domain.
-- Log in with domain credentials.
+## **Overview**
+In this guide, you will create a full Active Directory lab on your personal computer using VirtualBox. This lab will help you understand Active Directory and Windows networking. You can repeat the process multiple times to build intuition and even attempt it without instructions to test your knowledge.
 
-Let's get started. 
+---
 
-</p>
-
-<h2>Overview</h2>
-
-- Step 1: Install VirtualBox & Required Software
-- Step 2: Create a Virtual Machine for the Domain Controller
-- Step 3: Configure the Domain Controller
-- Step 4: Install Active Directory & Create a Domain
-- Step 5: Configure Additional Services
-- Step 6: Bulk Create Users with PowerShell
-- Step 7: Create a Windows 10 Client
-- Step 8: Join the Client to the Domain
-
-<h2>Step 1: Install VirtualBox & Required Software</h2>
-
-<img src="https://i.imgur.com/zPw9Kpj.png" height="80%" width="80%" alt="Setting up DC via Virtualbox"/>
-
-<h3> 1. Download and Install VirtualBox </h3>
-- Visit the VirtualBox website and download the appropriate version for your system (Windows, macOS, or Linux).
+## **Step 1: Install VirtualBox & Required Software**
+### **1. Download and Install VirtualBox**
+- Visit the [VirtualBox website](https://www.virtualbox.org/) and download the appropriate version for your system (Windows, macOS, or Linux).
 - Install VirtualBox.
 
-<h3> 2. Download and Install VirtualBox Extension Pack </h3>
-- After installing VirtualBox, download the Extension Pack from the same website.
-- Open VirtualBox, go to Preferences > Extensions, and install the Extension Pack.
+### **2. Download and Install VirtualBox Extension Pack**
+- After installing VirtualBox, download the **Extension Pack** from the same website.
+- Open VirtualBox, go to **Preferences > Extensions**, and install the Extension Pack.
+
+### **3. Download Windows 10 & Windows Server 2019 ISOs**
+- **Windows 10:** Go to Microsoft’s website and download the **Windows 10 ISO**.
+  - Choose Windows 10 (64-bit), select your language, and download the ISO.
+- **Windows Server 2019:** Download the **Server 2019 ISO** from Microsoft.
+  - Select **ISO**, fill in any required details, and download.
+
+---
+
+## **Step 2: Create a Virtual Machine for the Domain Controller**
+### **1. Create the VM in VirtualBox**
+- Open VirtualBox, click **New**.
+- Name it **DC** (Domain Controller).
+- Set the OS type to **Windows Server 2019 (64-bit)**.
+- Assign **2GB RAM** (or more if available).
+- Create a **Virtual Hard Disk** (default settings).
+
+### **2. Configure the VM**
+- Select the VM, go to **Settings**:
+  - **Advanced:**
+    - Set **Clipboard** & **Drag and Drop** to **Bi-Directional**.
+  - **System > Processor:**
+    - Allocate **at least 2 CPU cores** (more if available).
+  - **Network:**
+    - **Adapter 1**: NAT (for internet).
+    - **Adapter 2**: Internal Network (for domain communication).
+
+### **3. Install Windows Server 2019**
+- Start the VM.
+- Select the **Server 2019 ISO** as the boot device.
+- Install **Windows Server 2019 with Desktop Experience**.
+- Use **“Password1”** as the Administrator password.
+- Once installation is complete, log in.
+
+---
+
+## **Step 3: Configure the Domain Controller**
+### **1. Install VirtualBox Guest Additions**
+- In VirtualBox, go to **Devices > Insert Guest Additions CD Image**.
+- Open File Explorer in the VM, navigate to the CD, and install the **AMD64** version.
+- **Restart the VM** after installation.
+
+### **2. Configure Network Settings**
+- Open **Network Settings** in the VM.
+- Identify the **Internal Network Adapter** (it will have a 169.254.x.x address).
+- Rename the adapters:
+  - **“Internet”** for the NAT adapter.
+  - **“Internal”** for the internal network adapter.
+- Assign a **Static IP Address** to the Internal Adapter:
+- IP: 172.16.0.1 Subnet Mask: 255.255.255.0 DNS Server: 127.0.0.1 (loopback)
 
 
-<p>
-<img src="https://i.imgur.com/r6KduZ5.png" height="80%" width="80%" alt="Creating a Resource Group"/>
-</p>
-<p>
-Step 2: Within the Azure portal, create a resource group. This will be used to store the virtual machines and associated files. 
-</p>
-<br />
+### **3. Rename the Server**
+- Go to **System Properties**, rename the PC to **DC**, and restart.
 
-<p>
-<img src="https://i.imgur.com/mvdcoLE.png" height="80%" width="80%" alt="Create Windows 10 virtual machine"/>
-</p>
-<p>
-Step 3: Create a Windows 10 virtual machine. Ensure that the subscription, resource group, and region options match the resource group you will be using. 
+---
 
-Choose Windows 10 Pro 22H2. The VM architecture should be x64. Your VM size should be at least 2 vcpus to ensure smooth operation. Check the box at the bottom to confirm that you have an eligble Windows 10/11 license.   
+## **Step 4: Install Active Directory & Create a Domain**
+### **1. Install Active Directory Domain Services**
+- Open **Server Manager > Add Roles and Features**.
+- Select **Active Directory Domain Services** and install it.
 
-Click Review+Create. 
+### **2. Promote to Domain Controller**
+- After installation, click the **flag icon** in Server Manager.
+- Choose **Add a new forest**, set domain name: **mydomain.com**.
+- Use **Password1** for the Directory Services Restore Mode (DSRM) password.
+- Complete the installation and **restart**.
 
-</p>
-<p>
-<img src="https://i.imgur.com/kZNi51G.png" height="80%" width="80%" alt="Validating deployment"/>
-</p>
+---
 
-<p>
-If you get an error screen, go back and correct the red-highlighted areas. Once validated, click Create to deploy the Windows 10 virtual machine.   
+## **Step 5: Configure Additional Services**
+### **1. Create an Admin User**
+- Open **Active Directory Users and Computers**.
+- Create an **Organizational Unit (OU)** called **Admins**.
+- Create a **new user** (e.g., `a-jmatakor`).
+- Assign the user to the **Domain Admins** group.
+- Log out and log back in as the **new admin user**.
 
-Click Review+Create. 
-</p>
+### **2. Set Up NAT for Internet Access**
+- Open **Server Manager > Add Roles and Features**.
+- Install **Remote Access > Routing**.
+- Open **Routing and Remote Access**, enable NAT on the **Internet adapter**.
 
-<p>
-<img src="https://i.imgur.com/nuOnEk5.png" height="80%" width="80%" alt="Completing Windows VM creation"/>
-</p>
+### **3. Configure DHCP for Clients**
+- Install **DHCP Server** from Server Manager.
+- Open **DHCP Management**, create a new **Scope**:
+  - IP Range: 172.16.0.100 - 172.16.0.200
+  - Subnet Mask: 255.255.255.0
+  - Gateway: 172.16.0.1 (Domain Controller)
+  - DNS Server: 172.16.0.1
+ 
+- Activate the scope and restart the **DHCP service**.
 
+---
 
-<p>
-The Windows virtual machine has been successfully deployed!
-</p>
+## **Step 6: Bulk Create Users with PowerShell**
+### **1. Download the [PowerShell Script](https://drive.google.com/file/d/1hkAzwuC1C7f0OUyJ-8IwRFnUqpTQkqFa/view?usp=sharing)**
+- Disable **Internet Explorer Enhanced Security** in **Server Manager**.
+- Download the script from the provided link.
+- Extract it to the **Desktop**.
 
-<h2>Linux Virtual Machine Installation Steps</h2>
-
-<p>
-<img src="https://i.imgur.com/nSMJBRQ.png" height="80%" width="80%" alt="Logging into Microsoft Azure"/>
-</p>
-<p>
-Step 1: Log into the Azure Portal. 
-</p>
-<br />
-
-<p>
-<img src="https://i.imgur.com/r6KduZ5.png" height="80%" width="80%" alt="Creating a Resource Group"/>
-</p>
-<p>
-Step 2: Within the Azure portal, create a resource group. This will be used to store the virtual machines and associated files. 
-</p>
-<br />
-
-<p>
-<img src="https://i.imgur.com/2blEGro.png" height="80%" width="80%" alt="Create Linux virtual machine"/>
-</p>
-<p>
-Step 3: Create a Linux virtual machine. Ensure that the subscription, resource group, and region options match the resource group you will be using. 
-
-Choose Ubuntu Server 22.04. The VM architecture should be x64. Your VM size should be at least 2 vcpus to ensure smooth operation.
-Click Review+Create. 
-
-</p>
-<p>
-<img src="https://i.imgur.com/kZNi51G.png" height="80%" width="80%" alt="Validating deployment"/>
-</p>
-
-<p>
-If you get an error screen, go back and correct the red-highlighted areas. Once validated, click Create to deploy the Windows 10 virtual machine.   
-
-Click Review+Create. 
-</p>
-
-<p>
-<img src="https://i.imgur.com/0pUbRUD.png" height="80%" width="80%" alt="Completing Windows VM creation"/>
-</p>
+### **2. Modify & Run the Script**
+- Open **PowerShell ISE as Administrator**.
+- Set execution policy:  
+```powershell
+Set-ExecutionPolicy Unrestricted -Force
 
 
-<p>
-The Linux virtual machine has been successfully deployed!
-</p>
-
-
-<br />
