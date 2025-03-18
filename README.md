@@ -7,6 +7,16 @@
 ## **Overview**
 In this guide, you will create a full Active Directory lab on your personal computer using VirtualBox. This lab will help you understand Active Directory and Windows networking. You can repeat the process multiple times to build intuition and even attempt it without instructions to test your knowledge.
 
+By the end of this guide you'll be able to: 
+
+- Manage users in Active Directory.
+- Use DHCP and NAT for networking.
+- Join computers to a domain.
+- Log in with domain credentials.
+- You can now experiment with Group Policy, File Sharing, Remote Desktop, and more.
+
+Let's dive in. 
+
 ---
 
 ## **Step 1: Install VirtualBox & Required Software**
@@ -121,6 +131,41 @@ Set-ExecutionPolicy Unrestricted -Force
 
 Open the script, edit names.txt, adding your own name at the top.
 Run the script to create 1,000 user accounts.
+```
+## **Step 7: Create a Windows 10 Client**
+### **Create the VM**
+- In VirtualBox, click New.
+  - Name it Client1, select Windows 10 (64-bit).
+  - Allocate 4GB RAM (if possible).
+  - Assign an Internal Network Adapter.
+  - Install Windows 10.
+- Verify DHCP & Internet
+  - Open Command Prompt, type:
+    - ipconfig
+- Ensure an IP in the 172.16.0.x range and a default gateway of 172.16.0.1.
+- Test internet access with:
+  - ping google.com
+ 
+## **Step 8: Join the Client to the Domain**
+
+### **1. Rename the Computer & Join the Domain**
+- Open **System Properties** and click **Change**.
+- Rename the computer to **Client1**.
+- In the **Domain field**, enter:
+  - mydomain.com
+- Provide your **domain admin credentials** when prompted.
+- Restart the virtual machine (VM).
+
+### **2. Log In with a Domain User**
+- On the login screen, select **Other User**.
+- Sign in using your **domain username**, e.g.'FLNAME'
+- Enter the password 'Password1'
+- Wait for the **user profile** to be created.
+ 
+  
+ 
+
+
 
 
 
