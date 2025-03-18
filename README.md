@@ -11,7 +11,6 @@ By the end of this guide you'll be able to:
 - Use DHCP and NAT for networking.
 - Join computers to a domain.
 - Log in with domain credentials.
-- You can now experiment with Group Policy, File Sharing, Remote Desktop, and more.
 
 Let's dive in. 
 
