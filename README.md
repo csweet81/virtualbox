@@ -12,6 +12,8 @@
 - Join computers to a domain.
 - Log in with domain credentials.
 
+Let's get started. 
+
 </p>
 
 <br />
