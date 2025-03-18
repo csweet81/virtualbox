@@ -118,7 +118,7 @@ Let's dive in.
 ---
 
 ## **Step 6: Bulk Create Users with PowerShell**
-### **1. Download the PowerShell Script**
+### **1. Download the [PowerShell Script](https://drive.google.com/file/d/1hkAzwuC1C7f0OUyJ-8IwRFnUqpTQkqFa/view?usp=drive_link)**
 - Disable **Internet Explorer Enhanced Security** in **Server Manager**.
 - Download the script from the provided link.
 - Extract it to the **Desktop**.
